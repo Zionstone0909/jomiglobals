@@ -95,39 +95,42 @@ const Navbar = () => {
             <img src={logoDark} alt="Jomi Jewels" className="nav-logo h-12 md:h-[3.35rem] xl:h-[3.6rem] w-auto object-contain" />
           </Link>
 
-          <div className="flex items-center justify-end gap-4 md:gap-5 xl:gap-6 w-[148px] md:w-[190px]">
-            <button className="nav-link" aria-label="Toggle theme" onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
-              {theme === "dark" ? <Sun size={18} strokeWidth={1} /> : <Moon size={18} strokeWidth={1} />}
-            </button>
+          <div className="flex items-center gap-4 md:gap-5 xl:gap-6">
             <button className="nav-link" aria-label="Search" onClick={() => setSearchOpen(!searchOpen)}>
               <Search size={18} strokeWidth={1} />
             </button>
-            {user ? (
-              <>
-                <Link to="/settings" className="nav-link" aria-label="Settings">
-                  <Settings size={18} strokeWidth={1} />
+
+            <div className="hidden lg:flex items-center justify-end gap-4 xl:gap-6">
+              <button className="nav-link" aria-label="Toggle theme" onClick={() => setTheme(theme === "dark" ? "light" : "dark") }>
+                {theme === "dark" ? <Sun size={18} strokeWidth={1} /> : <Moon size={18} strokeWidth={1} />}
+              </button>
+              {user ? (
+                <>
+                  <Link to="/settings" className="nav-link" aria-label="Settings">
+                    <Settings size={18} strokeWidth={1} />
+                  </Link>
+                  <button className="nav-link flex items-center gap-1" aria-label="Sign out" onClick={() => signOut()}>
+                    <LogOut size={18} strokeWidth={1} />
+                  </button>
+                </>
+              ) : (
+                <Link to="/auth" className="nav-link" aria-label="Account">
+                  <User size={18} strokeWidth={1} />
                 </Link>
-                <button className="nav-link flex items-center gap-1" aria-label="Sign out" onClick={() => signOut()}>
-                  <LogOut size={18} strokeWidth={1} />
-                </button>
-              </>
-            ) : (
-              <Link to="/auth" className="nav-link" aria-label="Account">
-                <User size={18} strokeWidth={1} />
+              )}
+              <Link to={user ? "/wishlist" : "/auth"} className="nav-link" aria-label="Wishlist">
+                <Heart size={18} strokeWidth={1} />
               </Link>
-            )}
-            <Link to={user ? "/wishlist" : "/auth"} className="nav-link" aria-label="Wishlist">
-              <Heart size={18} strokeWidth={1} />
-            </Link>
-            <a
-              href="https://wa.me/2348163195023?text=Hi, I'd like to get in touch"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="nav-link"
-              aria-label="Contact"
-            >
-              <MessageCircle size={18} strokeWidth={1} />
-            </a>
+              <a
+                href="https://wa.me/2348163195023?text=Hi, I'd like to get in touch"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="nav-link"
+                aria-label="Contact"
+              >
+                <MessageCircle size={18} strokeWidth={1} />
+              </a>
+            </div>
           </div>
         </div>
 
